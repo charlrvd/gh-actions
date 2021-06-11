@@ -136,6 +136,7 @@ update_doc() {
 
     generated=$(cat /tmp/tf_generated)
     rm -f /tmp/tf_generated
+    echo "::debug - generated ok, line number:$(wc -l /tmp/tf_generated)"
 
     case "${OUTPUT_METHOD}" in
     print)
