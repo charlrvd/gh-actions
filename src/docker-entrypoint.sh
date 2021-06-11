@@ -122,7 +122,8 @@ update_doc() {
         success=$?
     else
         echo "::debug file=entrypoint.sh,line=84 command=terraform-docs ${OUTPUT_FORMAT} ${ARGS} ${working_dir}"
-        terraform-docs ${OUTPUT_FORMAT} ${ARGS} ${working_dir} >/tmp/tf_generated
+        terraform-docs ${OUTPUT_FORMAT} ${ARGS} ${working_dir} | tee -a /tmp/tf_generated
+        echo "::debug file=entrypoint.sh,line=126 generated_lines:$(wc -l /tmp/tf_generated)"
         success=$?
     fi
 
